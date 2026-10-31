@@ -1,0 +1,127 @@
+.footer {
+  position: relative;
+  padding: clamp(4rem, 9vw, 7rem) var(--gutter) clamp(1.6rem, 3vw, 2.4rem);
+  border-top: 1px solid var(--line-soft);
+  background: #000;
+}
+
+.footer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer__thanks {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 5vw, 3.6rem);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+.footer__heart {
+  margin-top: 0.9rem;
+  font-size: 1rem;
+  color: var(--sand);
+  animation: heartBeat 2.6s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  12% {
+    transform: scale(1.18);
+  }
+  24% {
+    transform: scale(1);
+  }
+  36% {
+    transform: scale(1.12);
+  }
+  48% {
+    transform: scale(1);
+  }
+}
+
+.footer__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem 2rem;
+  width: 100%;
+  margin-top: clamp(2.6rem, 6vw, 4.5rem);
+  padding-top: clamp(1.2rem, 2.4vw, 1.8rem);
+  border-top: 1px solid var(--line-soft);
+}
+
+.footer__email {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--body);
+  transition: color 0.3s var(--ease);
+}
+
+.footer__email:hover {
+  color: var(--ink);
+}
+
+.footer__socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.3rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.footer__socials a {
+  color: var(--muted);
+  transition: color 0.3s var(--ease);
+}
+
+.footer__socials a:hover {
+  color: var(--ink);
+}
+
+.footer__top {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.3s var(--ease);
+}
+
+.footer__top:hover {
+  color: var(--ink);
+}
+
+.footer__legal {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: #5f5f5f;
+}
+
+.footer__credit {
+  margin-top: 0.5rem;
+  font-size: 0.66rem;
+  color: #454545;
+}
+
+@media (max-width: 700px) {
+  .footer__bar {
+    flex-direction: column;
+    align-items: center;
+  }
+}

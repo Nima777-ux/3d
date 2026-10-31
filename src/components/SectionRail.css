@@ -1,0 +1,91 @@
+.rail {
+  position: fixed;
+  left: clamp(0.75rem, 1.6vw, 1.5rem);
+  top: 50%;
+  z-index: 18;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  transform: translateY(-50%);
+}
+
+.rail__track {
+  position: relative;
+  width: 1px;
+  height: 150px;
+  background: var(--line);
+}
+
+.rail__track-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--ink);
+  transition: height 0.25s linear;
+}
+
+.rail__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rail__item {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.15rem 0;
+  color: var(--muted);
+  transition: color 0.35s var(--ease);
+}
+
+.rail__tick {
+  width: 8px;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.45s var(--ease), background 0.35s var(--ease);
+}
+
+.rail__num {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+}
+
+.rail__label {
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: max-width 0.45s var(--ease), opacity 0.35s var(--ease);
+}
+
+.rail__item:hover,
+.rail__item.is-active {
+  color: var(--ink);
+}
+
+.rail__item:hover .rail__label,
+.rail__item.is-active .rail__label {
+  max-width: 9rem;
+  opacity: 1;
+}
+
+.rail__item.is-active .rail__tick {
+  width: 18px;
+  background: var(--sand);
+}
+
+@media (max-width: 1180px) {
+  .rail {
+    display: none;
+  }
+}

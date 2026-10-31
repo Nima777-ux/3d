@@ -1,0 +1,17 @@
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 45;
+  height: 2px;
+  background: transparent;
+}
+
+.scroll-progress__bar {
+  display: block;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.35), var(--sand));
+  transform-origin: left;
+  transition: transform 0.15s linear;
+}

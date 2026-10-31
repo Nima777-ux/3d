@@ -1,0 +1,53 @@
+.cursor {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  pointer-events: none;
+  display: none;
+}
+
+@media (pointer: fine) {
+  .cursor {
+    display: block;
+  }
+
+  html.has-custom-cursor,
+  html.has-custom-cursor a,
+  html.has-custom-cursor button {
+    cursor: none;
+  }
+}
+
+.cursor__dot,
+.cursor__ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  will-change: transform;
+}
+
+.cursor__dot {
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  background: #fff;
+}
+
+.cursor__ring {
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  transition: width 0.3s var(--ease), height 0.3s var(--ease),
+    margin 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+
+.cursor__ring.is-active {
+  width: 52px;
+  height: 52px;
+  margin: -26px 0 0 -26px;
+  opacity: 0.85;
+  border-color: rgba(255, 255, 255, 0.95);
+}

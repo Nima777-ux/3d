@@ -1,0 +1,92 @@
+services:
+  # One-shot dependency install. Runs before the app services so only one
+  # installer ever touches the shared node_modules inside the bind mount.
+  install:
+    image: node:22
+    working_dir: /app
+    command: ["sh", "-ec", "npm install --no-audit --no-fund --prefer-offline"]
+    volumes:
+      - ./:/app
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: nima
+      POSTGRES_PASSWORD: nima_dev_pw
+      POSTGRES_DB: nima
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nima -d nima"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    restart: on-failure
+
+  api:
+    image: node:22
+    working_dir: /app
+    labels:
+      base44.project: "Nima — API"
+      base44.kind: api
+    command: ["sh", "-ec", "exec node --watch server/index.mjs"]
+    volumes:
+      - ./:/app
+    environment:
+      PORT: "4000"
+      DATABASE_URL: postgres://nima:nima_dev_pw@db:5432/nima
+      NODE_ENV: development
+      BASE44_PREVIEW_MODE: ${BASE44_PREVIEW_MODE:-}
+    depends_on:
+      install:
+        condition: service_completed_successfully
+      db:
+        condition: service_healthy
+    restart: on-failure
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 10s
+      timeout: 4s
+      retries: 5
+      start_period: 12s
+
+  web:
+    image: node:22
+    working_dir: /app
+    labels:
+      base44.project: "Nima Nabizada"
+      base44.kind: web
+      base44.port: "3000"
+    command: ["sh", "-ec", "exec npx vite --host 0.0.0.0 --port 5173"]
+    volumes:
+      - ./:/app
+    ports:
+      - "3000:5173"
+    environment:
+      - BASE44_PREVIEW_MODE
+      - BASE44_SANDBOX_HOST_DOMAIN
+      # Vite >= 6.1 appends this to server.allowedHosts automatically.
+      - __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS
+      - API_PROXY_TARGET=http://api:4000
+    depends_on:
+      install:
+        condition: service_completed_successfully
+      api:
+        condition: service_healthy
+    restart: on-failure
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:5173/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 10s
+      timeout: 4s
+      retries: 8
+      start_period: 25s
