@@ -1,0 +1,49 @@
+:root {
+  /* Palette — three colours, plus tonal steps of the same three. */
+  --cream: #f7f4ef;
+  --cream-deep: #f1ebe1;
+  --cream-soft: #ede5d8;
+  --ink: #1c1c1c;
+  --ink-raised: #232220;
+  --ink-soft: #2b2926;
+  --beige: #a58b70;
+  --beige-light: #bda78e;
+  --beige-deep: #8c7560;
+
+  --beige-a08: rgba(165, 139, 112, 0.08);
+  --beige-a14: rgba(165, 139, 112, 0.14);
+  --beige-a24: rgba(165, 139, 112, 0.24);
+  --beige-a40: rgba(165, 139, 112, 0.4);
+  --ink-a08: rgba(28, 28, 28, 0.08);
+  --ink-a16: rgba(28, 28, 28, 0.16);
+  --ink-a64: rgba(28, 28, 28, 0.64);
+  --cream-a64: rgba(247, 244, 239, 0.64);
+  --cream-a40: rgba(247, 244, 239, 0.4);
+  --cream-a14: rgba(247, 244, 239, 0.14);
+
+  --font-display: 'Clash Display', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-sans: 'Satoshi', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: 'Instrument Serif', 'Times New Roman', serif;
+
+  --container: 1240px;
+  --gutter: clamp(20px, 5vw, 64px);
+  --nav-h: 78px;
+  --radius-sm: 10px;
+  --radius: 18px;
+  --radius-lg: 28px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --shadow-soft: 0 24px 60px -32px rgba(28, 28, 28, 0.45);
+  --shadow-lift: 0 40px 90px -40px rgba(28, 28, 28, 0.55);
+
+  --focus: 0 0 0 2px var(--ink), 0 0 0 4px var(--beige);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ease: linear;
+    --ease-in-out: linear;
+  }
+}

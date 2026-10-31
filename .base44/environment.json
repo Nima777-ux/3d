@@ -1,0 +1,22 @@
+{
+  "previewPort": 3000,
+  "healthPath": "/",
+  "startCommand": "docker compose -f docker-compose.base44.yml up -d",
+  "secrets": [
+    {
+      "name": "RESEND_API_KEY",
+      "description": "Optional. Resend API key so contact-form messages are emailed to you. Create one at https://resend.com/api-keys. Without it messages are still stored in data/messages.jsonl.",
+      "requiredAtBoot": false
+    },
+    {
+      "name": "CONTACT_TO_EMAIL",
+      "description": "Optional. The inbox that receives contact-form messages (e.g. you@yourdomain.com).",
+      "requiredAtBoot": false
+    },
+    {
+      "name": "CONTACT_FROM_EMAIL",
+      "description": "Optional. Verified sender for outgoing mail, e.g. 'Portfolio <hello@yourdomain.com>'. Defaults to Resend's onboarding sender.",
+      "requiredAtBoot": false
+    }
+  ]
+}

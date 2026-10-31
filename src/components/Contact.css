@@ -1,0 +1,250 @@
+.contact {
+  background:
+    radial-gradient(80% 60% at 15% 0%, rgba(165, 139, 112, 0.12) 0%, rgba(165, 139, 112, 0) 60%),
+    #191918;
+}
+
+.contact__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(36px, 6vw, 80px);
+  align-items: start;
+}
+
+.contact__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--beige-a24);
+  font-size: 0.78rem;
+  color: var(--cream);
+  margin-top: 4px;
+}
+
+.contact__pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--beige);
+  animation: statusPulse 2.4s var(--ease-in-out) infinite;
+}
+
+@keyframes statusPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(165, 139, 112, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 9px rgba(165, 139, 112, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(165, 139, 112, 0);
+  }
+}
+
+.contact__meta {
+  display: grid;
+  gap: 18px;
+  margin: 34px 0 30px;
+  padding-top: 28px;
+  border-top: 1px solid var(--cream-a14);
+}
+
+.contact__meta div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.contact__meta dt {
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--cream-a40);
+}
+
+.contact__meta dd {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--cream);
+  text-align: right;
+}
+
+.contact__meta a {
+  border-bottom: 1px solid var(--beige-a40);
+  transition: color 0.3s var(--ease);
+}
+
+.contact__meta a:hover {
+  color: var(--beige-light);
+}
+
+.contact__placeholder,
+.footer__placeholder {
+  border-bottom: 1px dashed var(--beige-a40);
+  color: var(--cream-a64);
+  cursor: help;
+}
+
+.contact__panel {
+  padding: clamp(24px, 3.4vw, 40px);
+  border: 1px solid var(--beige-a24);
+  border-radius: var(--radius-lg);
+  background: rgba(247, 244, 239, 0.035);
+}
+
+.contact__note {
+  margin-bottom: 26px;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--cream-a64);
+}
+
+/* Fields */
+.field {
+  position: relative;
+  margin-bottom: 22px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cream-a40);
+  transition: color 0.3s var(--ease);
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 9px 2px;
+  border: 0;
+  border-bottom: 1px solid var(--cream-a14);
+  background: transparent;
+  color: var(--cream);
+  font-size: 0.97rem;
+  border-radius: 0;
+  transition: border-color 0.35s var(--ease), background-color 0.35s var(--ease);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 112px;
+  line-height: 1.65;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--cream-a40);
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid var(--beige);
+  outline-offset: 4px;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-bottom-color: var(--beige);
+}
+
+.field:focus-within label {
+  color: var(--beige-light);
+}
+
+.field__error {
+  margin-top: 8px;
+  font-size: 0.76rem;
+  color: var(--beige-light);
+}
+
+.field--honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  margin: 0;
+}
+
+.contact__error {
+  margin-bottom: 18px;
+  padding-left: 12px;
+  border-left: 2px solid var(--beige);
+  font-size: 0.84rem;
+  line-height: 1.6;
+  color: var(--beige-light);
+}
+
+.contact__submit {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.contact__spinner {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Success */
+.contact__success {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  color: var(--cream);
+  animation: successIn 0.6s var(--ease) both;
+}
+
+@keyframes successIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.contact__success-icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--beige);
+  color: var(--ink);
+}
+
+.contact__success h3 {
+  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+}
+
+.contact__success p {
+  max-width: 42ch;
+  font-size: 0.94rem;
+  line-height: 1.75;
+  color: var(--cream-a64);
+}
+
+.contact__success .btn {
+  margin-top: 8px;
+  color: var(--cream);
+}
+
+@media (max-width: 900px) {
+  .contact__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
